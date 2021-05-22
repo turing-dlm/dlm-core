@@ -1,1 +1,1 @@
-# dlm-core
+# Core Service for Digital Libary Management
