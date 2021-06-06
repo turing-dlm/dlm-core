@@ -3,7 +3,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+try:
+    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+except KeyError:
+    SECRET_KEY = 'dummy-for-testing123$%^789)'
 
 DEBUG = False
 
