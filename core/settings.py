@@ -54,17 +54,41 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+try:
+    host = os.environ['PG_HOST']
+except KeyError:
+    host = 'localhost'
+
+try:
+    port = os.environ['PG_PORT']
+except KeyError:
+    port = '5432'
+
+try:
+    user = os.environ['PG_USER']
+except KeyError:
+    user = 'postgres'
+
+try:
+    password = os.environ['PG_PASS']
+except KeyError:
+    password = ''
+
+try:
+    db = os.environ['PG_DB']
+except KeyError:
+    db = 'db'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['PG_DB'],
-        'HOST': os.environ['PG_HOST'],
-        'PORT': os.environ['PG_PORT'],
-        'USER': os.environ['PG_USER'],
-        'PASSWORD': os.environ['PG_PASS'],
+        'NAME': db,
+        'HOST': host,
+        'PORT': port,
+        'USER': user,
+        'PASSWORD': password,
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -81,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -92,12 +115,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
