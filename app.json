@@ -1,0 +1,19 @@
+{
+  "name": "Turing DLM",
+  "description": "A multi-tenant SaaS library management system.",
+  "image": "heroku/python",
+  "repository": "https://github.com/turing-dlm/dlm-core",
+  "keywords": [
+    "python",
+    "django"
+  ],
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "The secret key for the Django application.",
+      "generator": "secret"
+    }
+  }
+}
