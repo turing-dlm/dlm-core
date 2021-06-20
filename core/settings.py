@@ -13,6 +13,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['turing-dlm.herokuapp.com']
 
 INSTALLED_APPS = [
+    'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
