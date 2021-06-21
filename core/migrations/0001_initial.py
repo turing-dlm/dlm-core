@@ -15,17 +15,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Library',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('address', models.CharField(max_length=1000)),
-                ('rating', models.DecimalField(decimal_places=1, max_digits=3, null=True)),
+                ('rating', models.DecimalField(
+                    decimal_places=1, max_digits=3, null=True)),
                 ('category', models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
             name='UserData',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('firstname', models.CharField(max_length=100)),
                 ('lastname', models.CharField(max_length=100)),
                 ('dob', models.DateField(null=True)),
@@ -38,10 +41,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserLibraryMapping',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('status', models.CharField(max_length=50)),
-                ('libraryid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.library')),
-                ('userid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.userdata')),
+                ('libraryid', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='core.library')),
+                ('userid', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='core.userdata')),
             ],
         ),
     ]
