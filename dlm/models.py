@@ -123,14 +123,14 @@ class PublisherBookMapping(models.Model):
 class Copy(models.Model):
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     status = models.CharField(max_length=50)
-    lease_link = models.ForeignKey('Lease', on_delete=models.CASCADE)
+    lease_link = models.ForeignKey('Lease', null=True, on_delete=models.CASCADE)
 
 
 class Lease(models.Model):
     copy_id = models.ForeignKey(Copy, on_delete=models.CASCADE)
     user_id = models.ForeignKey('core.UserData', on_delete=models.CASCADE)
     date_of_issue = models.DateField()
-    date_of_return = models.DateField()
+    date_of_return = models.DateField(null=True)
 
 
 class Location(models.Model):
