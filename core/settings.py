@@ -14,6 +14,7 @@ ALLOWED_HOSTS = ['turing-dlm.herokuapp.com']
 
 INSTALLED_APPS = [
     'core.apps.CoreConfig',
+    'dlm.apps.DlmConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
