@@ -94,16 +94,16 @@ class BookType(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=500)
     year = models.IntegerField()
-    edition = models.CharField(max_length=10)
+    edition = models.CharField(max_length=50)
     language = models.CharField(max_length=50)
     isbn = models.CharField(max_length=50)
     type = models.ForeignKey(BookType, on_delete=models.CASCADE)
 
 
 class Author(models.Model):
-    firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-    middlename = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=250)
+    lastname = models.CharField(max_length=250)
+    middlename = models.CharField(max_length=250)
 
 
 class BookAuthorMapping(models.Model):
@@ -123,7 +123,8 @@ class PublisherBookMapping(models.Model):
 class Copy(models.Model):
     book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     status = models.CharField(max_length=50)
-    lease_link = models.ForeignKey('Lease', null=True, on_delete=models.CASCADE)
+    lease_link = models.ForeignKey(
+        'Lease', null=True, on_delete=models.CASCADE)
 
 
 class Lease(models.Model):
@@ -134,9 +135,9 @@ class Lease(models.Model):
 
 
 class Location(models.Model):
-    main_division = models.CharField(max_length=50)
-    sub_division = models.CharField(max_length=50)
-    sub_sub_division = models.CharField(max_length=50)
+    main_division = models.CharField(max_length=250)
+    sub_division = models.CharField(max_length=250)
+    sub_sub_division = models.CharField(max_length=250)
 
 
 class CopyLocationLink(models.Model):
@@ -145,8 +146,8 @@ class CopyLocationLink(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=200)
+    name = models.CharField(max_length=250)
+    description = models.CharField(max_length=500)
 
 
 class UserRoleMapping(models.Model):
@@ -155,14 +156,14 @@ class UserRoleMapping(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=200)
+    name = models.CharField(max_length=250)
+    description = models.CharField(max_length=500)
 
 
 class CategoryConfiguration(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     book_count = models.IntegerField()
-    lease_days = models.DecimalField(max_digits=4, decimal_places=1)
+    lease_days = models.IntegerField()
     fine_rate = models.DecimalField(max_digits=4, decimal_places=1)
     ebook_access = models.BooleanField()
 
@@ -175,4 +176,4 @@ class UserCategoryMapping(models.Model):
 class FineCollection(models.Model):
     lease_id = models.ForeignKey(Lease, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=4, decimal_places=1)
-    payment_mode = models.CharField(max_length=20)
+    payment_mode = models.CharField(max_length=100)
